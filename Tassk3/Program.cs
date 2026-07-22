@@ -32,9 +32,13 @@ class Program
 
         try
         {
-            string price = array.FindMarket(InputHandler.GetText("Введіть назву магазину")).ToString();
-            Console.WriteLine(price);
-        }catch(WrongMarketException e)
+            Price[] arrayOfMarkets = array.FindMarket(InputHandler.GetText("Введіть назву магазину"));
+            for (int i = 0; i < arrayOfMarkets.Length; i++)
+            {
+                Console.WriteLine(arrayOfMarkets[i].ToString());
+            }
+        }
+        catch(WrongMarketException e)
         {
             Console.WriteLine(e.Message);
         }
@@ -113,8 +117,6 @@ public struct Price
     public string ProductName { get; set; }
     public string MarketName { get ; set; }
     public double ProductPrice { get; set; }
-
-    public Price() { }
 
     public Price(string ProductName, string MarketName, double ProductPrice)
     {
